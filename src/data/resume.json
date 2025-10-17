@@ -1,0 +1,66 @@
+{
+  "sections": [
+    {
+      "title": "Education",
+      "entries": [
+        {
+          "title": "Master of Computer Application",
+          "company": "@PES University, Bangalore",
+          "dates": "September 2024 - September 2026",
+          "details": "CGPA: 8.48/10.00 (Currently)"
+        },
+        {
+          "title": "Bachelor of Computer Application - Computer Science",
+          "company": "@NIMS University, Jaipur",
+          "dates": "July 2021 - July 2024",
+          "details": "CGPA: 8.5/10.00"
+        },
+        {
+          "title": "Higher Secondary Education | Class 12th | State Board",
+          "company": "@D.G.S.S, Bokaro",
+          "dates": "June 2019 - May 2021",
+          "details": "Percentage: 64.00%"
+        },
+        {
+          "title": "Secondary Education | Class 10th | CBSE",
+          "company": "@Bokaro Ispat Vidyalaya, Bokaro",
+          "dates": "June 2017 - March 2018",
+          "details": "Percentage: 68.00%"
+        }
+      ]
+    },
+    {
+      "title": "Experience",
+      "entries": [
+        {
+          "title": "Student's Grade Prediction (ML Dashboard)",
+          "company": "@Self-Driven Project",
+          "dates": "2024",
+          "bulletPoints": [
+            "Built a predictive dashboard using Flask + Streamlit to analyze university ranking data from 2011–2024.",
+            "Trained models for future rank forecasting using Scikit-learn and extensive preprocessing techniques.",
+            "Handled data visualization, RESTful APIs, and full backend/frontend integration."
+          ]
+        },
+        {
+          "title": "QuickCarHire (Car Rental App)",
+          "company": "@Self-Driven Project",
+          "dates": "2023",
+          "bulletPoints": [
+            "Developed full-stack web app with predictive pricing and recommendation system using Flask and Azure.",
+            "Implemented CI/CD with GitHub Actions and cloud deployment via Azure App Service and Azure SQL DB."
+          ]
+        },
+        {
+          "title": "JobStation (Job Board App)",
+          "company": "@Self-Driven Project",
+          "dates": "2023",
+          "bulletPoints": [
+            "Created web platform for jobseekers and employers, including fraud detection and live face verification.",
+            "Used PHP, Python, OpenCV, Google Cloud Console, and SQL."
+          ]
+        }
+      ]
+    }
+  ]
+}
