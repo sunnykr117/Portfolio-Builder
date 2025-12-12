@@ -5,8 +5,8 @@ import './index.css';
 import App from './App.tsx';
 import reportWebVitals from './reportWebVitals';
 
-// Set the browser tab title
-document.title = "Sunny Kumar - Portfolio";
+// // // Set the browser tab title
+// document.title = "Sunny Kumar - Portfolio";
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

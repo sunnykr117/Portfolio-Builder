@@ -212,13 +212,13 @@ const Projects: React.FC = () => {
 <BigProjectsContainer>
   <ProjectContainer>
     <img src={jobStation} alt="Job Station" />
-    <h3>E-commerce Shopping Application</h3>
-    <p>Developed a cross-platform e-commerce mobile application using Flutter, Riverpod, and Firebase. Enabled authentication, payments, and a responsive UI across Android and iOS.</p>
+    <h3>Student Performance Prediction</h3>
+    <p>A AI/ML web application built with Streamlit that predicts a student’s final grade and pass/fail outcome using trained regression and classification models. It takes basic academic inputs and provides instant predictions with easy visual insights.</p>
     <div className="links">
-      <a href="https://github.com/nevilsavaliya/JobStation" target="_blank" rel="noopener noreferrer">
+      <a href="https://github.com/sunnykr117/student_performance_prediction" target="_blank" rel="noopener noreferrer">
         <FaGithub /> See on GitHub
       </a>
-      <a href="https://jobstation-hnid.onrender.com" target="_blank" rel="noopener noreferrer">
+      <a href="#" target="_blank" rel="noopener noreferrer">
         <FaGlobe /> Try it Out
       </a>
     </div>
@@ -229,7 +229,7 @@ const Projects: React.FC = () => {
     <h3>Barber Appointment App</h3>
     <p>Developed a cross-platform barber appointment management app using Flutter, Supabase, and Riverpod. Features include appointment scheduling, barber availability tracking, and automated notifications.</p>
     <div className="links">
-      <a href="https://github.com/nevilsavaliya/quickcarhire" target="_blank" rel="noopener noreferrer">
+      <a href="https://github.com/sunnykr117/barbershop-suite" target="_blank" rel="noopener noreferrer">
         <FaGithub /> See on GitHub
       </a>
       <a href="#" onClick={handleComingSoonClick}>
@@ -245,10 +245,10 @@ const Projects: React.FC = () => {
     <h3>Weather Application</h3>
     <p>Built a weather app that integrated the OpenWeather REST API to display real-time weather conditions with location-based search.</p>
     <div className="links">
-      <a href="https://github.com/nevilsavaliya/UniversityDataAnalysis" target="_blank" rel="noopener noreferrer">
+      <a href="https://github.com/sunnykr117/weatherapp" target="_blank" rel="noopener noreferrer">
         <FaGithub /> See on GitHub
       </a>
-      <a href="https://universitydataanalysis-9ojbpfrm5vubg4tf5lrpp2.streamlit.app/" target="_blank" rel="noopener noreferrer">
+      <a href="#" target="_blank" rel="noopener noreferrer">
         <FaGlobe /> Try it Out
       </a>
     </div>
@@ -259,10 +259,10 @@ const Projects: React.FC = () => {
     <h3>Portfolio Website</h3>
     <p>Built in React to showcase my best work and skills. Designed to be maintainable, responsive, and user-friendly.</p>
     <div className="links">
-      <a href="https://github.com/nevilsavaliya/ResumeWebsite" target="_blank" rel="noopener noreferrer">
+      <a href="https://github.com/sunnykr117/Portfolio-Builder" target="_blank" rel="noopener noreferrer">
         <FaGithub /> See on GitHub
       </a>
-      <a href="https://tjklint.github.io" onClick={handleComingSoonClick}>
+      <a href="#" onClick={handleComingSoonClick}>
         <FaGlobe /> You're already here!
       </a>
     </div>
@@ -272,7 +272,7 @@ const Projects: React.FC = () => {
     <h3>More Projects Coming Soon...</h3>
     <p>Stay tuned!</p>
     <div className="links">
-      <a href="https://github.com/nevilsavaliya/ResumeWebsite" target="_blank" rel="noopener noreferrer">
+      <a href="https://github.com/sunnykr117" target="_blank" rel="noopener noreferrer">
         <FaGithub /> See on GitHub
       </a>
       <a href="#" target="_blank" onClick={handleComingSoonClick} rel="noopener noreferrer">

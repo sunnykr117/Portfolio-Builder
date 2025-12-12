@@ -1,214 +1,182 @@
+/* ------------------------------
+   NEW ABOUT SECTION DESIGN
+   Completely redesigned & unique
+------------------------------- */
+
 .about-container {
-  width: 80%;
-  margin: 0 auto;
-  font-family: 'RobotoMono', sans-serif;
-  color: white;
+  width: 85%;
+  margin: 40px auto;
+  color: #eaeaea;
+  font-family: "Inter", sans-serif;
 
   h2 {
-    font-size: 2em;
-    padding-top: 10px;
-    margin: 0;
-    color: #fff;
-    font-family: 'RobotoMono', sans-serif;
-    text-align: left;
+    font-size: 2.4rem;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+    color: #c084fc;
   }
 
+  /* ------------------------------
+     INTRO (Image + Text)
+  ------------------------------- */
   .about-intro {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin-bottom: 40px;
-  
-    /* Vertically center the photo with text and header on desktop */
-    @media (min-width: 769px) {
-      align-items: center;
-    }
-  
-    /* Stack content and center text and photo on mobile */
-    @media (max-width: 768px) {
-      flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background: #1c1c24;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
+    align-items: center;
+
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
       text-align: center;
     }
-  
+
     .about-text {
-      flex: 1;
-      padding-right: 0;
-      text-align: left;
-
-      /* Center text on mobile */
-      @media (max-width: 768px) {
-        text-align: center;
-        padding-right: 0;
-      }
-  
       p {
-        font-size: 1.2em;
-        margin-bottom: 20px;
+        font-size: 1.15rem;
+        line-height: 1.7;
+        margin-bottom: 18px;
       }
-  
-      .purple-text {
-        color: #9b30ff; /* Purple color for highlighted text */
+
+      .highlight {
+        color: #c084fc;
+        font-weight: 600;
       }
-  
+
       a {
-        color: #9b30ff; /* Purple color for links */
-        text-decoration: underline; /* Always underline links */
-  
-        &:visited {
-          color: #9b30ff; /* Maintain purple for visited links */
-        }
-  
+        color: #c084fc;
+        text-decoration: none;
+        font-weight: 600;
+
         &:hover {
-          color: #8a2be2; /* Slightly darker purple on hover */
+          text-decoration: underline;
         }
       }
     }
-  
+
     .about-photo {
-      flex: 0 0 30%;
-      padding-left: 5%;
       display: flex;
-      justify-content: flex-end;
-      align-items: center;
-  
+      justify-content: center;
+
       img {
-        width: 100%;
+        width: 260px;
         height: auto;
-        border: 3px solid #8a2be2;
-        border-radius: 10px;
-      }
-  
-      /* Ensure the photo is centered horizontally and vertically on mobile */
-      @media (max-width: 768px) {
-        width: 70%;
-        padding-left: 0;
-        margin-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: center;
-        align-items: center;
+        border-radius: 20px;
+        border: 2px solid #c084fc;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.6);
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.05);
+        }
       }
     }
-  }
-  
-  .about-technologies,
-  .about-contact {
-    margin-bottom: 40px;
   }
 
+  /* ------------------------------
+     TECHNOLOGIES SECTION
+  ------------------------------- */
+  .about-technologies {
+    margin-top: 60px;
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    .technology-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+
+      .tech-card {
+        background: #25252e;
+        padding: 25px;
+        border-radius: 16px;
+        text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-6px);
+          box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+          font-size: 1.3rem;
+          margin-bottom: 18px;
+          color: #b78bfa;
+        }
+
+        .icons {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 16px;
+
+          i {
+            font-size: 2.3rem;
+            color: #e4e4e4;
+            transition: color 0.2s ease;
+
+            &:hover {
+              color: #c084fc;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* ------------------------------
+     CONTACT FORM
+  ------------------------------- */
   .about-contact {
+    margin-top: 60px;
+
     form {
+      background: #1c1c24;
+      padding: 35px;
+      border-radius: 15px;
       display: flex;
       flex-direction: column;
+      gap: 20px;
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
 
       label {
-        margin-bottom: 10px;
-        font-family: 'RobotoMono', sans-serif;
+        font-size: 1rem;
       }
 
       input,
       textarea {
-        margin-bottom: 20px;
-        padding: 10px;
-        font-size: 1em;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-family: 'RobotoMono', sans-serif;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #444;
+        background: #2b2b33;
+        color: #fff;
+        font-size: 1rem;
+
+        &:focus {
+          border-color: #c084fc;
+          outline: none;
+        }
       }
 
       button {
-        padding: 10px 20px;
-        font-size: 1.2em;
-        color: #fff;
-        background-color: #8a2be2;
+        padding: 14px 20px;
+        background: #c084fc;
         border: none;
-        border-radius: 5px;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #fff;
         cursor: pointer;
-        transition: background-color 0.3s;
-        font-family: 'RobotoMono', sans-serif;
+        transition: background 0.3s ease;
 
         &:hover {
-          background-color: #7a23d1; /* Slightly darker purple on hover */
-        }
-      }
-    }
-  }
-}
-
-.about-technologies-container {
-  width: 70%;
-  margin: 0 auto;
-  padding: 20px 0;
-  font-family: 'RobotoMono', sans-serif;
-  color: #fff;
-
-  .about-technologies {
-    h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #fff;
-      font-family: 'RobotoMono', sans-serif;
-    }
-
-    .technology-categories {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-
-      /* Switch to single-column layout on small screens */
-      @media (max-width: 500px) {
-        grid-template-columns: 1fr;
-      }
-
-      .technology-category {
-        background-color: #2a2a2a;
-        padding: 20px;
-        border-radius: 10px;
-        color: #fff;
-
-        h3 {
-          font-size: 1.5em;
-          margin-bottom: 30px;
-          text-align: center;
-          color: #fff;
-        }
-
-        .technology-items {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 10px;
-
-          /* Adjust to two columns on small screens */
-          @media (max-width: 500px) {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-
-          .technology-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 1.2em;
-            cursor: pointer;
-            color: #fff;
-
-            i {
-              font-size: 3em;
-              margin-bottom: 10px;
-              color: #fff;
-            }
-
-            p {
-              margin: 0;
-              text-align: center;
-              color: #fff;
-              font-family: 'Inter', sans-serif;
-            }
-
-            &:hover {
-              color: #8a2be2; /* Purple highlight on hover */
-            }
-          }
+          background: #a76cf4;
         }
       }
     }

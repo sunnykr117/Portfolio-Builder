@@ -19,13 +19,13 @@
           "title": "Higher Secondary Education | Class 12th | State Board",
           "company": "@D.G.S.S, Bokaro",
           "dates": "June 2019 - May 2021",
-          "details": "Percentage: 64.00%"
+          "details": "Percentage: 64.4%"
         },
         {
           "title": "Secondary Education | Class 10th | CBSE",
           "company": "@Bokaro Ispat Vidyalaya, Bokaro",
           "dates": "June 2017 - March 2018",
-          "details": "Percentage: 68.00%"
+          "details": "Percentage: 68.8%"
         }
       ]
     },
@@ -33,31 +33,31 @@
       "title": "Experience",
       "entries": [
         {
-          "title": "Student's Grade Prediction (ML Dashboard)",
-          "company": "@Self-Driven Project",
+          "title": "Student's Performance Prediction (ML Dashboard)",
+          "company": "@College Project",
+          "dates": "2025",
+          "bulletPoints": [
+           "Developed an interactive ML dashboard using Streamlit to predict students' final grades and pass/fail outcomes.",
+           "Built and deployed regression and classification models using Scikit-learn with proper feature scaling and label encoding.",
+           "Added clear visual insights to help users understand predictions and feature importance."
+          ]
+        },
+        {
+          "title": "Trim & Go (Barber Booking App)",
+          "company": "@College Project",
           "dates": "2024",
           "bulletPoints": [
-            "Built a predictive dashboard using Flask + Streamlit to analyze university ranking data from 2011–2024.",
-            "Trained models for future rank forecasting using Scikit-learn and extensive preprocessing techniques.",
-            "Handled data visualization, RESTful APIs, and full backend/frontend integration."
+           "Developed a complete barber booking system with separate client and admin apps using Flutter, Firebase, and Riverpod for real-time service scheduling and management.",
+           "Implemented secure authentication, appointment booking workflows, user profile handling, and admin-side booking oversight with Cloud Firestore as the backend."
           ]
         },
         {
-          "title": "QuickCarHire (Car Rental App)",
+          "title": "Weather App ",
           "company": "@Self-Driven Project",
           "dates": "2023",
           "bulletPoints": [
-            "Developed full-stack web app with predictive pricing and recommendation system using Flask and Azure.",
-            "Implemented CI/CD with GitHub Actions and cloud deployment via Azure App Service and Azure SQL DB."
-          ]
-        },
-        {
-          "title": "JobStation (Job Board App)",
-          "company": "@Self-Driven Project",
-          "dates": "2023",
-          "bulletPoints": [
-            "Created web platform for jobseekers and employers, including fraud detection and live face verification.",
-            "Used PHP, Python, OpenCV, Google Cloud Console, and SQL."
+          "Developed a responsive weather application with real-time temperature, forecasts, and additional climate metrics using Flutter and the OpenWeather API.",
+         "Implemented city-based search, dynamic UI updates, and API data parsing with Dart, delivering a smooth and modern user experience."
           ]
         }
       ]

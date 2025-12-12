@@ -38,7 +38,7 @@ const Techstack: React.FC = () => {
               <div className="technology-item"><SiFlutter /><p>Flutter</p></div>
               {/* <div className="technology-item"><SiRedis /><p>Redis</p></div> */}
               {/* <div className="technology-item"><SiRabbitmq /><p>RabbitMQ</p></div> */}
-              {/* <div className="technology-item"><SiScikitlearn /><p>SCSS</p></div> */}
+              <div className="technology-item"><SiScikitlearn /><p>SCSS</p></div>
             </div>
           </div>
 

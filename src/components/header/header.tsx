@@ -23,7 +23,7 @@ const Header: React.FC = () => {
         {isOpen ? <FaTimes size={30} className="close-icon" /> : <FaBars size={30} />}
       </div>
       <nav className={`nav ${isOpen ? 'open' : ''}`}>
-        <a href="#home" className="nav-link" onClick={(e) => handleClick(e, 'home')}>
+        <a href="#hero" className="nav-link" onClick={(e) => handleClick(e, 'hero')}>
           <FaHome />
           Home
         </a>
@@ -31,13 +31,13 @@ const Header: React.FC = () => {
           <FaUser />
           About
         </a>
-        <a href="#projects" className="nav-link" onClick={(e) => handleClick(e, 'projects')}>
-          <FaCode />
-          Projects
-        </a>
         <a href="#resume" className="nav-link" onClick={(e) => handleClick(e, 'resume')}>
           <FaFileAlt />
           Resume
+        </a>
+        <a href="#projects" className="nav-link" onClick={(e) => handleClick(e, 'projects')}>
+          <FaCode />
+          Projects
         </a>
         <a
           className="button"

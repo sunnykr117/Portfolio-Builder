@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2024 [Nevil Savaliya](https://github.com/tjklint)
+Copyright (c) 2024 [Sunny Kumar](https://github.com/tjklint)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
