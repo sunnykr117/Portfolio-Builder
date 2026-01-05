@@ -1,66 +1,76 @@
 {
-  "sections": [
-    {
-      "title": "Education",
-      "entries": [
+    "sections": [
         {
-          "title": "Master of Computer Application",
-          "company": "@PES University, Bangalore",
-          "dates": "September 2024 - September 2026",
-          "details": "CGPA: 8.48/10.00 (Currently)"
+            "title": "Education",
+            "entries": [
+                {
+                    "title": "Master of Computer Application",
+                    "company": "@PES University, Bangalore",
+                    "dates": "Oct 2024 - Ongoing",
+                    "details": "CGPA: 8.48/10.00 (Currently)"
+                },
+                {
+                    "title": "Bachelor of Computer Application - Computer Science",
+                    "company": "@NIMS University, Jaipur",
+                    "dates": "Aug 2021 - Sept 2024",
+                    "details": "CGPA: 8.5/10.00"
+                },
+                {
+                    "title": "Higher Secondary Education | Class 12th | State Board",
+                    "company": "@D.G.S.S, Bokaro",
+                    "dates": "June 2019 - July 2021",
+                    "details": "Percentage: 64.4%"
+                },
+                {
+                    "title": "Secondary Education | Class 10th | CBSE",
+                    "company": "@Bokaro Ispat Vidyalaya, Bokaro",
+                    "dates": "June 2017 - May 2018",
+                    "details": "Percentage: 68.8%"
+                }
+            ]
         },
         {
-          "title": "Bachelor of Computer Application - Computer Science",
-          "company": "@NIMS University, Jaipur",
-          "dates": "July 2021 - July 2024",
-          "details": "CGPA: 8.5/10.00"
-        },
-        {
-          "title": "Higher Secondary Education | Class 12th | State Board",
-          "company": "@D.G.S.S, Bokaro",
-          "dates": "June 2019 - May 2021",
-          "details": "Percentage: 64.4%"
-        },
-        {
-          "title": "Secondary Education | Class 10th | CBSE",
-          "company": "@Bokaro Ispat Vidyalaya, Bokaro",
-          "dates": "June 2017 - March 2018",
-          "details": "Percentage: 68.8%"
+            "title": "Experience",
+            "entries": [
+                {
+                    "title": "DAVIS – Darvas, Volume, Sentiment Analysis",
+                    "company": "@College Major Project",
+                    "dates": "June 2025 – Present",
+                    "bulletPoints": [
+                        "Developed an AI-driven investment system to generate stock trading signals by integrating technical and fundamental analysis.",
+                        "Combined Darvas Box Theory, EMAs, Volume, and Sentiment Analysis to produce robust and actionable trading signals.",
+                        "Presented real-time insights through an interactive dashboard to support informed investment decisions."
+                    ]
+                },
+                {
+                    "title": "Student's Performance Prediction (ML Dashboard)",
+                    "company": "@College Project",
+                    "dates": "Jan 2025 - June 2025",
+                    "bulletPoints": [
+                        "Developed an interactive ML dashboard using Streamlit to predict students' final grades and pass/fail outcomes.",
+                        "Built and deployed regression and classification models using Scikit-learn with proper feature scaling and label encoding.",
+                        "Added clear visual insights to help users understand predictions and feature importance."
+                    ]
+                },
+                {
+                    "title": "Trim & Go (Barber Booking App)",
+                    "company": "@College Project",
+                    "dates": "Aug 2024 - Jan 2025",
+                    "bulletPoints": [
+                        "Developed a complete barber booking system with separate client and admin apps using Flutter, Firebase, and Riverpod for real-time service scheduling and management.",
+                        "Implemented secure authentication, appointment booking workflows, user profile handling, and admin-side booking oversight with Cloud Firestore as the backend."
+                    ]
+                },
+                {
+                    "title": "Weather App ",
+                    "company": "@Self-Driven Project",
+                    "dates": "2023",
+                    "bulletPoints": [
+                        "Developed a responsive weather application with real-time temperature, forecasts, and additional climate metrics using Flutter and the OpenWeather API.",
+                        "Implemented city-based search, dynamic UI updates, and API data parsing with Dart, delivering a smooth and modern user experience."
+                    ]
+                }
+            ]
         }
-      ]
-    },
-    {
-      "title": "Experience",
-      "entries": [
-        {
-          "title": "Student's Performance Prediction (ML Dashboard)",
-          "company": "@College Project",
-          "dates": "2025",
-          "bulletPoints": [
-           "Developed an interactive ML dashboard using Streamlit to predict students' final grades and pass/fail outcomes.",
-           "Built and deployed regression and classification models using Scikit-learn with proper feature scaling and label encoding.",
-           "Added clear visual insights to help users understand predictions and feature importance."
-          ]
-        },
-        {
-          "title": "Trim & Go (Barber Booking App)",
-          "company": "@College Project",
-          "dates": "2024",
-          "bulletPoints": [
-           "Developed a complete barber booking system with separate client and admin apps using Flutter, Firebase, and Riverpod for real-time service scheduling and management.",
-           "Implemented secure authentication, appointment booking workflows, user profile handling, and admin-side booking oversight with Cloud Firestore as the backend."
-          ]
-        },
-        {
-          "title": "Weather App ",
-          "company": "@Self-Driven Project",
-          "dates": "2023",
-          "bulletPoints": [
-          "Developed a responsive weather application with real-time temperature, forecasts, and additional climate metrics using Flutter and the OpenWeather API.",
-         "Implemented city-based search, dynamic UI updates, and API data parsing with Dart, delivering a smooth and modern user experience."
-          ]
-        }
-      ]
-    }
-  ]
+    ]
 }

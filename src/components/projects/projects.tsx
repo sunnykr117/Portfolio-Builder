@@ -1,286 +1,372 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaGithub, FaGlobe } from 'react-icons/fa';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 // Importing assets for project GIFs
-import universityDataAnalysis from '../../assets/projects/universityDataAnalysis.gif';
-import jobStation from '../../assets/projects/jobStation.gif';
-import quickCarHire from '../../assets/projects/quickCarHire.gif';
-import portfolioGif from '../../assets/projects/Portfolio.gif';
+import davis from '../../assets/projects/davis.gif';
+import BarberAppointment from '../../assets/projects/BarberAppointment.gif';
+import StudentPredictor from '../../assets/projects/StudentPredictor.gif';
+import StudentPortfolio from '../../assets/projects/StudentPortfolio.gif';
+import WeatherApp from '../../assets/projects/WeatherApp.gif';
 
-// Main container for all projects, handles layout and styling
+// Main container for all projects
 const ProjectsContainer = styled.div`
   display: flex;
-  flex-direction: column; /* Stack projects vertically */
-  align-items: center; /* Center all content horizontally */
-  color: #fff; /* White text color */
-  font-family: 'RobotoMono', sans-serif;
-  padding: 0 10px; /* Padding for horizontal content */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  width: 80%; /* Set container width */
-  margin: 0 auto; /* Center the container */
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  padding: 60px 10px;
+  overflow-x: hidden;
+  width: 85%;
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 // Title for the projects section
 const SectionTitle = styled.h2`
-  font-size: 2.5em; /* Large font size for section title */
-  margin-bottom: 20px; /* Space below the title */
-  text-align: left; /* Align text to the left */
-  width: 100%; /* Take up full width of the container */
-  box-sizing: border-box; /* Include padding and borders in width calculation */
+  font-size: 3em;
+  margin-bottom: 50px;
+  text-align: center;
+  width: 100%;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  
+  @media (max-width: 768px) {
+    font-size: 2.2em;
+  }
 `;
 
-// Container for big projects, aligns them vertically
+// Container for big projects
 const BigProjectsContainer = styled.div`
   display: flex;
-  flex-direction: column; /* Stack big projects vertically */
-  align-items: center; /* Center content horizontally */
-  width: 100%; /* Full width for the big projects container */
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 40px;
 `;
 
-// Container for individual projects, handles layout and background styling
+// Container for individual projects with glassmorphism
 const ProjectContainer = styled.div`
-  width: 100%; /* Full width for individual projects */
-  margin-bottom: 40px; /* Space below each project */
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
-  border-radius: 10px; /* Rounded corners */
-  padding: 20px; /* Padding around the project content */
-  text-align: center; /* Center the text inside the project */
-  position: relative; /* Relative positioning for background media */
-  overflow: hidden; /* Ensure no content overflows outside the box */
+  width: 100%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px var(--shadow-color);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 50px var(--shadow-color);
+    border-color: var(--accent-primary);
+  }
 
-  /* Style for project images or videos */
+  /* Background image with parallax effect */
   img, video {
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    border-radius: 10px; /* Rounded corners for the media */
-    object-fit: cover; /* Cover the area without distortion */
-    position: absolute; /* Position absolutely within the container */
-    top: 0;
-    left: 0;
-    z-index: 0; /* Place the image or video behind text */
-    opacity: 0.3; /* Semi-transparent to not overpower the text */
+    width: 100%;
+    max-height: 400px;
+    border-radius: 16px;
+    object-fit: cover;
+    margin-bottom: 25px;
+    opacity: 0.9;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  &:hover img, &:hover video {
+    opacity: 1;
+    transform: scale(1.02);
   }
 
-  /* Style for project titles */
   h3 {
-    font-size: 2em; /* Large font for project titles */
-    margin-bottom: 10px; /* Space below the title */
-    z-index: 1; /* Ensure the title is above the background media */
-    position: relative; /* Keep relative positioning for z-index */
-  }
-
-  /* Style for project description text */
-  p {
-    font-size: 1.2em; /* Medium size for description */
-    margin-bottom: 20px; /* Space below the description */
-    z-index: 1; /* Ensure text is above the media */
-    position: relative; /* Keep relative positioning */
-  }
-
-  /* Style for the links section */
-  .links {
-    z-index: 1; /* Ensure links are above the background media */
-    position: relative; /* Relative positioning for z-index control */
-    display: flex; /* Use flexbox for layout */
-    justify-content: center; /* Center the links */
-    gap: 20px; /* Space between links */
-  }
-
-  /* Style for individual links */
-  a {
-    color: #9b59b6; /* Purple color for links */
-    font-size: 1.2em; /* Font size for links */
-    display: flex; /* Flex layout for link icon and text */
-    align-items: center; /* Center icon and text vertically */
-    gap: 8px; /* Space between icon and text */
-    text-decoration: none; /* Remove underline from links */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Add text shadow for visibility */
-
-    /* Hover state for links */
-    &:hover {
-      color: #d4a1ff; /* Lighten the link color on hover */
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: var(--accent-primary);
+    font-weight: 700;
+    
+    @media (max-width: 768px) {
+      font-size: 1.6em;
     }
   }
 
-  /* Responsive styles for small screens */
+  p {
+    font-size: 1.15em;
+    margin-bottom: 25px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    
+    @media (max-width: 768px) {
+      font-size: 1em;
+    }
+  }
+
+  .links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  a {
+    color: var(--accent-primary);
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 12px 24px;
+    border: 2px solid var(--accent-primary);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+
+    svg {
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px var(--shadow-color);
+      
+      svg {
+        transform: rotate(360deg) scale(1.2);
+      }
+    }
+  }
+
   @media (max-width: 768px) {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 10px;
+    padding: 25px;
   }
 `;
 
-// Container for small projects, wraps them and spaces them out
+// Container for small projects
 const SmallProjectsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap; /* Allow the projects to wrap to new rows */
-  justify-content: space-between; /* Space projects out evenly */
-  width: 100%; /* Full width for the small projects container */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  width: 100%;
+  margin-top: 30px;
 `;
 
 // Container for individual small projects
 const SmallProject = styled.div`
-  width: 45%; /* Width for small projects (45% allows 2 per row) */
-  margin-bottom: 40px; /* Space below each small project */
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
-  border-radius: 10px; /* Rounded corners */
-  padding: 20px; /* Padding around the content */
-  text-align: center; /* Center text inside the project */
-  position: relative; /* Relative positioning for background media */
-  overflow: hidden; /* Prevent overflow outside the project box */
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px var(--shadow-color);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px var(--shadow-color);
+    border-color: var(--accent-primary);
+  }
 
-  /* Style for project images or videos */
   img, video {
-    width: 100%; /* Full width for media */
-    height: 100%; /* Full height for media */
-    border-radius: 10px; /* Rounded corners for the media */
-    object-fit: cover; /* Cover the area without distortion */
-    position: absolute; /* Position the media absolutely */
-    top: 0;
-    left: 0;
-    z-index: 0; /* Place the media behind the text */
-    opacity: 0.3; /* Semi-transparent to not overpower text */
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+  }
+  
+  &:hover img, &:hover video {
+    opacity: 1;
+    transform: scale(1.05);
   }
 
-  /* Style for small project titles */
   h3 {
-    font-size: 1.5em; /* Smaller font for small project titles */
-    margin-bottom: 10px; /* Space below the title */
-    z-index: 1; /* Ensure title is above the background media */
-    position: relative; /* Keep relative positioning */
+    font-size: 1.5em;
+    margin-bottom: 12px;
+    color: var(--accent-primary);
+    font-weight: 600;
   }
 
-  /* Style for small project description text */
   p {
-    font-size: 1em; /* Smaller font size for description */
-    margin-bottom: 20px; /* Space below the description */
-    z-index: 1; /* Ensure text is above the background media */
-    position: relative; /* Keep relative positioning */
+    font-size: 1em;
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+    line-height: 1.6;
   }
 
-  /* Style for links in small projects */
   .links {
-    z-index: 1; /* Ensure links are above background media */
-    position: relative; /* Relative positioning for z-index control */
-    display: flex; /* Use flexbox for layout */
-    justify-content: center; /* Center the links */
-    gap: 20px; /* Space between the links */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
   }
 
-  /* Style for individual links */
   a {
-    color: #9b59b6; /* Purple color for links */
-    font-size: 1em; /* Smaller font size for links */
-    display: flex; /* Flex layout for icon and text */
-    align-items: center; /* Align icon and text vertically */
-    gap: 8px; /* Space between icon and text */
-    text-decoration: none; /* Remove underline */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Text shadow for visibility */
+    color: var(--accent-primary);
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 2px solid var(--accent-primary);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-weight: 600;
 
-    /* Hover state for links */
-    &:hover {
-      color: #d4a1ff; /* Lighten link color on hover */
+    svg {
+      transition: transform 0.3s ease;
     }
-  }
 
-  /* Responsive styles for different screen sizes */
-  @media (max-width: 1250px) {
-    width: 45%; /* Maintain two columns on medium screens */
-  }
-
-  @media (max-width: 968px) {
-    width: 43%; /* Adjust slightly on smaller screens */
-  }
-
-  @media (max-width: 768px) {
-    width: 100%; /* Full width for small screens */
-    margin: 0 auto 20px auto; /* Center and space out projects */
+    &:hover {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px var(--shadow-color);
+      
+      svg {
+        transform: scale(1.3);
+      }
+    }
   }
 `;
 
 // Handle the "Coming Soon" click event
 const handleComingSoonClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-  event.preventDefault(); /* Prevent the default link behavior */
-  alert('Coming soon!'); /* Show an alert when clicked */
+  event.preventDefault();
+  alert('Coming soon!');
 };
 
 const Projects: React.FC = () => {
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
+
   return (
-    <ProjectsContainer id="projects">
+    <ProjectsContainer
+      id="projects"
+      ref={elementRef}
+      className={isVisible ? 'visible' : ''}
+    >
       <SectionTitle>Projects</SectionTitle>
-<BigProjectsContainer>
-  <ProjectContainer>
-    <img src={jobStation} alt="Job Station" />
-    <h3>Student Performance Prediction</h3>
-    <p>A AI/ML web application built with Streamlit that predicts a student’s final grade and pass/fail outcome using trained regression and classification models. It takes basic academic inputs and provides instant predictions with easy visual insights.</p>
-    <div className="links">
-      <a href="https://github.com/sunnykr117/student_performance_prediction" target="_blank" rel="noopener noreferrer">
-        <FaGithub /> See on GitHub
-      </a>
-      <a href="#" target="_blank" rel="noopener noreferrer">
-        <FaGlobe /> Try it Out
-      </a>
-    </div>
-  </ProjectContainer>
+      <BigProjectsContainer>
+        <ProjectContainer>
+          <img src={davis} alt="DAVIS Investment Analysis System" />
+          <h3>DAVIS – Darvas, Volume, Sentiment Analysis</h3>
+          <p>
+            An AI-driven investment analysis platform that generates stock trading signals
+            by combining Darvas Box Theory, EMAs, volume indicators, and sentiment analysis.
+            It provides real-time insights through an interactive dashboard to support
+            smarter investment decisions.
+          </p>
+          <div className="links">
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub /> See on GitHub
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <FaGlobe /> Try it Out
+            </a>
+          </div>
+        </ProjectContainer>
 
-  <ProjectContainer>
-    <img src={quickCarHire} alt="Quick Car Hire Project" />
-    <h3>Barber Appointment App</h3>
-    <p>Developed a cross-platform barber appointment management app using Flutter, Supabase, and Riverpod. Features include appointment scheduling, barber availability tracking, and automated notifications.</p>
-    <div className="links">
-      <a href="https://github.com/sunnykr117/barbershop-suite" target="_blank" rel="noopener noreferrer">
-        <FaGithub /> See on GitHub
-      </a>
-      <a href="#" onClick={handleComingSoonClick}>
-        <FaGlobe /> Try it Out
-      </a>
-    </div>
-  </ProjectContainer>
-</BigProjectsContainer>
+        <ProjectContainer>
+          <img src={StudentPredictor} alt="Student Performance Prediction" />
+          <h3>Student Performance Prediction</h3>
+          <p>A AI/ML web application built with Streamlit that predicts a student's final grade and pass/fail outcome using trained regression and classification models. It takes basic academic inputs and provides instant predictions with easy visual insights.</p>
+          <div className="links">
+            <a href="https://github.com/sunnykr117/student_performance_prediction" target="_blank" rel="noopener noreferrer">
+              <FaGithub /> See on GitHub
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <FaGlobe /> Try it Out
+            </a>
+          </div>
+        </ProjectContainer>
 
-<SmallProjectsContainer>
-  <SmallProject>
-    <img src={universityDataAnalysis} alt="University Data Analysis" />
-    <h3>Weather Application</h3>
-    <p>Built a weather app that integrated the OpenWeather REST API to display real-time weather conditions with location-based search.</p>
-    <div className="links">
-      <a href="https://github.com/sunnykr117/weatherapp" target="_blank" rel="noopener noreferrer">
-        <FaGithub /> See on GitHub
-      </a>
-      <a href="#" target="_blank" rel="noopener noreferrer">
-        <FaGlobe /> Try it Out
-      </a>
-    </div>
-  </SmallProject>
+        <ProjectContainer>
+          <img src={BarberAppointment} alt="Barber Appointment App" />
+          <h3>Barber Appointment App</h3>
+          <p>Developed a cross-platform barber appointment management app using Flutter, Supabase, and Riverpod. Features include appointment scheduling, barber availability tracking, and automated notifications.</p>
+          <div className="links">
+            <a href="https://github.com/sunnykr117/barbershop-suite" target="_blank" rel="noopener noreferrer">
+              <FaGithub /> See on GitHub
+            </a>
+            <a href="#" onClick={handleComingSoonClick}>
+              <FaGlobe /> Try it Out
+            </a>
+          </div>
+        </ProjectContainer>
+      </BigProjectsContainer>
 
-  <SmallProject>
-    <img src={portfolioGif} alt="Portfolio GIF" />
-    <h3>Portfolio Website</h3>
-    <p>Built in React to showcase my best work and skills. Designed to be maintainable, responsive, and user-friendly.</p>
-    <div className="links">
-      <a href="https://github.com/sunnykr117/Portfolio-Builder" target="_blank" rel="noopener noreferrer">
-        <FaGithub /> See on GitHub
-      </a>
-      <a href="#" onClick={handleComingSoonClick}>
-        <FaGlobe /> You're already here!
-      </a>
-    </div>
-  </SmallProject>
+      <SmallProjectsContainer>
+        <SmallProject>
+          <img src={WeatherApp} alt="Weather Application" />
+          <h3>Weather Application</h3>
+          <p>Built a weather app that integrated the OpenWeather REST API to display real-time weather conditions with location-based search.</p>
+          <div className="links">
+            <a href="https://github.com/sunnykr117/weatherapp" target="_blank" rel="noopener noreferrer">
+              <FaGithub /> See on GitHub
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <FaGlobe /> Try it Out
+            </a>
+          </div>
+        </SmallProject>
 
-  <SmallProject>
-    <h3>More Projects Coming Soon...</h3>
-    <p>Stay tuned!</p>
-    <div className="links">
-      <a href="https://github.com/sunnykr117" target="_blank" rel="noopener noreferrer">
-        <FaGithub /> See on GitHub
-      </a>
-      <a href="#" target="_blank" onClick={handleComingSoonClick} rel="noopener noreferrer">
-        <FaGlobe /> Try it Out
-      </a>
-    </div>
-  </SmallProject>
-</SmallProjectsContainer>
+        <SmallProject>
+          <img src={StudentPortfolio} alt="Portfolio GIF" />
+          <h3>Portfolio Website</h3>
+          <p>Built in React to showcase my best work and skills. Designed to be maintainable, responsive, and user-friendly.</p>
+          <div className="links">
+            <a href="https://github.com/sunnykr117/Portfolio-Builder" target="_blank" rel="noopener noreferrer">
+              <FaGithub /> See on GitHub
+            </a>
+            <a href="#" onClick={handleComingSoonClick}>
+              <FaGlobe /> You're already here!
+            </a>
+          </div>
+        </SmallProject>
+
+        <SmallProject>
+          <h3>More Projects Coming Soon...</h3>
+          <p>Stay tuned!</p>
+          <div className="links">
+            <a href="https://github.com/sunnykr117" target="_blank" rel="noopener noreferrer">
+              <FaGithub /> See on GitHub
+            </a>
+            <a href="#" target="_blank" onClick={handleComingSoonClick} rel="noopener noreferrer">
+              <FaGlobe /> Try it Out
+            </a>
+          </div>
+        </SmallProject>
+      </SmallProjectsContainer>
     </ProjectsContainer>
   );
 };

@@ -1,19 +1,41 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import robot from '../../assets/robot/webp/robot.webp'; // Importing robot image
+import { useTheme } from '../../context/ThemeContext';
+import robot from '../../assets/robot/webp/robot.webp';
 
 // Main container for the hero section
 const HeroContainer = styled.section`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #1e1e1e;
-  color: #fff;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   overflow: hidden;
-  font-family: 'RobotoMono', sans-serif;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+
+  /* Animated gradient background */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0.05;
+    z-index: 0;
+    animation: ${keyframes`
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(5deg); }
+    `} 20s ease-in-out infinite;
+  }
+
+  padding-top: 70px;
 
   @media (min-width: 768px) {
     flex-direction: row;
+    padding-top: 0;
   }
 `;
 
@@ -25,9 +47,11 @@ const LeftContainer = styled.div`
   padding: 40px;
   text-align: left;
   margin-top: -10%;
+  position: relative;
+  z-index: 1;
 
   @media (max-width: 768px) {
-    padding-top: 0;
+    padding-top: 20px;
     margin-top: 0;
   }
 
@@ -52,16 +76,21 @@ const RightContainer = styled.div`
 
 // Floating animation
 const floatAnimation = keyframes`
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 `;
 
-// ✔ FIXED NAME HERE
 const RobotImg = styled.img`
   width: 80%;
   z-index: 1;
-  animation: ${floatAnimation} 3s infinite;
+  animation: ${floatAnimation} 4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 30px var(--accent-primary));
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: drop-shadow(0 15px 40px var(--accent-primary));
+    animation-duration: 3s;
+  }
 
   @media (min-width: 768px) {
     width: 50%;
@@ -75,9 +104,9 @@ const shrinkAndMove = (left: number, top: number, containerWidth: number, contai
 
 const Circle = styled.div<{ left: number; top: number; size: number; containerWidth: number; containerHeight: number }>`
   position: absolute;
-  background-color: #fff;
+  background: var(--accent-primary);
   border-radius: 50%;
-  opacity: 0.8;
+  opacity: 0.6;
 
   ${({ left, top, size, containerWidth, containerHeight }) => css`
     width: ${size}px;
@@ -88,21 +117,52 @@ const Circle = styled.div<{ left: number; top: number; size: number; containerWi
   `}
 `;
 
+const TopLine = styled.h1`
+  font-size: 1.8em;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-bottom: 0.5em;
+  opacity: 0;
+  animation: fadeInDown 0.8s ease-out 0.2s forwards;
+
+  @media (max-width: 768px) {
+    font-size: 1.3em;
+  }
+`;
+
 const GradientText = styled.h2`
-  background: linear-gradient(90deg, #8a2be2, #d4a1ff);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-size: 4em;
-  font-weight: bold;
-  margin: 0.5em 0;
+  font-weight: 800;
+  margin: 0.3em 0;
+  font-family: 'Poppins', sans-serif;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5em;
+  }
 `;
 
 const TypewriterText = styled.div`
-  color: #d4a1ff;
-  font-size: 1.5em;
+  color: var(--accent-primary);
+  font-size: 1.8em;
+  font-weight: 500;
   margin-top: 0.5em;
   white-space: nowrap;
   overflow: hidden;
+  opacity: 0;
+  animation: fadeInLeft 0.8s ease-out 0.6s forwards;
+  
+  /* Glow effect */
+  text-shadow: 0 0 20px var(--accent-primary);
+
+  @media (max-width: 768px) {
+    font-size: 1.3em;
+  }
 `;
 
 interface CircleProps {
@@ -115,6 +175,7 @@ interface CircleProps {
 }
 
 const Hero: React.FC = () => {
+  const { theme } = useTheme();
   const [circles, setCircles] = useState<CircleProps[]>([]);
   const [topLine, setTopLine] = useState('');
   const [currentText, setCurrentText] = useState('');
@@ -127,8 +188,8 @@ const Hero: React.FC = () => {
     "Building modern apps with creativity and precision.",
     "Exploring technology, one project at a time.",
     "Passionate about innovation, design, and development.",
-    "Welcome aboard! Let’s explore my world of tech.",
-    "Hi! I’m Sunny — developer, creator, and problem solver.",
+    "Welcome aboard! Let's explore my world of tech.",
+    "Hi! I'm Sunny — developer, creator, and problem solver.",
     "Creating code that connects ideas with innovation.",
     "Bringing imagination to life through technology.",
   ];
@@ -202,15 +263,14 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <HeroContainer>
+    <HeroContainer id="hero">
       <LeftContainer>
-        <h1>{topLine}</h1>
+        <TopLine>{topLine}</TopLine>
         <GradientText>I'm Sunny Kumar.</GradientText>
         <TypewriterText>{currentText}</TypewriterText>
       </LeftContainer>
 
       <RightContainer ref={rightContainerRef}>
-        {/* ✔ FIXED JSX TAG */}
         <RobotImg src={robot} alt="robot" />
 
         {circles.map(c => (

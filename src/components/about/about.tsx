@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import './about.scss';
 
 import sunny from '../../assets/me/webp/sunny1.webp';
@@ -7,6 +8,7 @@ const photos = [sunny];
 
 const About: React.FC = () => {
   const [photo, setPhoto] = useState('');
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
   useEffect(() => {
     const randomPhoto = photos[Math.floor(Math.random() * photos.length)];
@@ -14,7 +16,11 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <div className="about-container" id="about">
+    <div
+      className={`about-container ${isVisible ? 'visible' : ''}`}
+      id="about"
+      ref={elementRef}
+    >
       <section className="about-intro">
         <div className="about-text">
           <h2 className="about-title">About Me</h2>
@@ -24,7 +30,7 @@ const About: React.FC = () => {
             skills in <span className="purple-text">HTML, CSS, and JavaScript</span>.
           </p>
           <p>
-            I’m currently pursuing my <span className="purple-text">Master of Computer Applications (MCA)</span> at
+            I'm currently pursuing my <span className="purple-text">Master of Computer Applications (MCA)</span> at
             <span className="purple-text"> PES University, Bengaluru</span>.
           </p>
           <p>
@@ -32,7 +38,7 @@ const About: React.FC = () => {
             I enjoy exploring technologies like <span className="purple-text">React, Node.js, MongoDB, and Supabase</span> to deliver impactful digital experiences.
           </p>
           <p>
-            I’m passionate about learning and adapting to new frameworks and tools quickly. My strengths lie in
+            I'm passionate about learning and adapting to new frameworks and tools quickly. My strengths lie in
             <span className="purple-text"> teamwork, adaptability, leadership,</span> and <span className="purple-text">effective communication</span>,
             which help me collaborate and grow in fast-paced environments.
           </p>

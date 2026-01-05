@@ -1,183 +1,337 @@
-/* ------------------------------
-   NEW ABOUT SECTION DESIGN
-   Completely redesigned & unique
-------------------------------- */
+/* ========================================
+   MODERN ABOUT SECTION WITH GLASSMORPHISM
+   ======================================== */
 
 .about-container {
   width: 85%;
-  margin: 40px auto;
-  color: #eaeaea;
-  font-family: "Inter", sans-serif;
+  max-width: 1400px;
+  margin: 60px auto;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+
+  /* Initial state for scroll animation */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: 40px auto;
+  }
+}
+
+.about-title {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Poppins', sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+}
+
+/* ========================================
+   ABOUT INTRO (Image + Text Grid)
+   ======================================== */
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 50px;
+
+  /* Glassmorphism */
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px var(--shadow-color);
+
+  padding: 50px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  /* Animated gradient border */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-primary);
+    border-radius: 24px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::before {
+    opacity: 0.1;
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 35px;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    padding: 25px;
+  }
+}
+
+.about-text {
+  animation: fadeInLeft 0.8s ease-out 0.2s backwards;
+
+  p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+
+  /* Purple highlighted text */
+  .purple-text {
+    color: var(--accent-primary);
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--accent-secondary);
+      text-shadow: 0 0 10px var(--accent-primary);
+    }
+  }
+
+  a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-primary);
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      color: var(--accent-secondary);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.about-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInRight 0.8s ease-out 0.4s backwards;
+
+  img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border-radius: 24px;
+    border: 3px solid var(--accent-primary);
+    box-shadow: 0 10px 40px var(--shadow-color);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+
+    /* Glow effect */
+    filter: drop-shadow(0 0 20px var(--accent-primary));
+
+    &:hover {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 15px 50px var(--shadow-color);
+      filter: drop-shadow(0 0 30px var(--accent-primary));
+    }
+
+    @media (max-width: 900px) {
+      max-width: 260px;
+    }
+  }
+}
+
+/* ========================================
+   TECHNOLOGIES SECTION
+   ======================================== */
+
+.about-technologies {
+  margin-top: 60px;
 
   h2 {
-    font-size: 2.4rem;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     text-align: center;
-    font-weight: 700;
-    color: #c084fc;
   }
 
-  /* ------------------------------
-     INTRO (Image + Text)
-  ------------------------------- */
-  .about-intro {
+  .technology-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    background: #1c1c24;
-    padding: 40px;
-    border-radius: 18px;
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
-    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 
-    @media (max-width: 800px) {
-      grid-template-columns: 1fr;
+    .tech-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      border-radius: 20px;
       text-align: center;
-    }
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
 
-    .about-text {
-      p {
-        font-size: 1.15rem;
-        line-height: 1.7;
-        margin-bottom: 18px;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-primary);
+        opacity: 0.1;
+        transition: left 0.5s ease;
       }
 
-      .highlight {
-        color: #c084fc;
+      &:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 15px 40px var(--shadow-color);
+        border-color: var(--accent-primary);
+
+        &::before {
+          left: 100%;
+        }
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        color: var(--accent-primary);
         font-weight: 600;
       }
 
-      a {
-        color: #c084fc;
-        text-decoration: none;
-        font-weight: 600;
+      .icons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
 
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
+        i {
+          font-size: 2.5rem;
+          color: var(--text-primary);
+          transition: all 0.3s ease;
 
-    .about-photo {
-      display: flex;
-      justify-content: center;
-
-      img {
-        width: 260px;
-        height: auto;
-        border-radius: 20px;
-        border: 2px solid #c084fc;
-        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.6);
-        transition: transform 0.3s ease;
-
-        &:hover {
-          transform: scale(1.05);
-        }
-      }
-    }
-  }
-
-  /* ------------------------------
-     TECHNOLOGIES SECTION
-  ------------------------------- */
-  .about-technologies {
-    margin-top: 60px;
-
-    h2 {
-      margin-bottom: 30px;
-    }
-
-    .technology-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-
-      .tech-card {
-        background: #25252e;
-        padding: 25px;
-        border-radius: 16px;
-        text-align: center;
-        transition: transform 0.2s ease, box-shadow 0.3s ease;
-
-        &:hover {
-          transform: translateY(-6px);
-          box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        h3 {
-          font-size: 1.3rem;
-          margin-bottom: 18px;
-          color: #b78bfa;
-        }
-
-        .icons {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          gap: 16px;
-
-          i {
-            font-size: 2.3rem;
-            color: #e4e4e4;
-            transition: color 0.2s ease;
-
-            &:hover {
-              color: #c084fc;
-            }
+          &:hover {
+            color: var(--accent-primary);
+            transform: scale(1.2) rotate(10deg);
           }
         }
       }
     }
   }
+}
 
-  /* ------------------------------
-     CONTACT FORM
-  ------------------------------- */
-  .about-contact {
-    margin-top: 60px;
+/* ========================================
+   CONTACT FORM
+   ======================================== */
 
-    form {
-      background: #1c1c24;
-      padding: 35px;
-      border-radius: 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
+.about-contact {
+  margin-top: 60px;
 
-      label {
-        font-size: 1rem;
+  form {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: 0 8px 32px var(--shadow-color);
+
+    label {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    input,
+    textarea {
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 2px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: var(--accent-primary);
+        outline: none;
+        box-shadow: 0 0 0 3px var(--shadow-color);
       }
 
-      input,
-      textarea {
-        padding: 12px;
-        border-radius: 8px;
-        border: 1px solid #444;
-        background: #2b2b33;
-        color: #fff;
-        font-size: 1rem;
+      &::placeholder {
+        color: var(--text-secondary);
+        opacity: 0.6;
+      }
+    }
 
-        &:focus {
-          border-color: #c084fc;
-          outline: none;
-        }
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    button {
+      padding: 16px 24px;
+      background: var(--accent-primary);
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px var(--shadow-color);
+
+      &:hover {
+        background: var(--accent-secondary);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px var(--shadow-color);
       }
 
-      button {
-        padding: 14px 20px;
-        background: #c084fc;
-        border: none;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #fff;
-        cursor: pointer;
-        transition: background 0.3s ease;
-
-        &:hover {
-          background: #a76cf4;
-        }
+      &:active {
+        transform: translateY(0);
       }
     }
   }

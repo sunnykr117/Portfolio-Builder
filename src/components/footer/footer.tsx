@@ -1,6 +1,6 @@
 import React from 'react';
 import './footer.scss';
-import { FaGithub, FaLinkedin, FaGlobe, FaCode, FaDev } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaCode } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
   return (
@@ -12,13 +12,13 @@ const Footer: React.FC = () => {
         </p>
       </div>
       <div className="center-align">
-        <p>&copy; Sunny Kumar 2025</p>
+        <p>&copy; Sunny Kumar 2026</p>
       </div>
       <div className="right-align social-icons">
         <a href="https://github.com/sunnykr117/" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
         <a href="https://linkedin.com/in/-sunny-kumar-/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-        <a href="#" target="_blank" rel="noopener noreferrer"><FaGlobe /></a>
-          <a href="https://leetcode.com/u/sunnykr117/" target="_blank" rel="noopener noreferrer"><FaCode /></a>
+
+        <a href="https://leetcode.com/u/sunnykr117/" target="_blank" rel="noopener noreferrer"><FaCode /></a>
       </div>
     </footer>
   );

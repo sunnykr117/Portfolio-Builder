@@ -1,13 +1,18 @@
 import React from 'react';
 import { FaGithub, FaGitlab, FaDocker, FaJira, FaJava, FaPython, FaHtml5, FaCss3, FaJs, FaReact, FaDatabase, FaNodeJs } from 'react-icons/fa';
-import { SiCsharp, SiCplusplus, SiPostgresql, SiMongodb, SiMysql, SiSqlite, SiSpringboot, SiRedis, SiRabbitmq, SiDotnet, SiXamarin, SiVisualstudio, SiCisco, SiHandlebarsdotjs, SiGo, SiKotlin, SiTypescript, SiScikitlearn, SiWebpack, SiFlutter} from 'react-icons/si';
-
+import { SiCsharp, SiCplusplus, SiPostgresql, SiMongodb, SiMysql, SiSqlite, SiSpringboot, SiRedis, SiRabbitmq, SiDotnet, SiXamarin, SiVisualstudio, SiCisco, SiHandlebarsdotjs, SiGo, SiKotlin, SiTypescript, SiScikitlearn, SiWebpack, SiFlutter } from 'react-icons/si';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 import './techstack.scss';
 
 const Techstack: React.FC = () => {
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.15 });
+
   return (
-    <div className="about-technologies-container">
+    <div
+      className={`about-technologies-container ${isVisible ? 'visible' : ''}`}
+      ref={elementRef}
+    >
       <section className="about-technologies">
         <h2>My Techstack</h2>
         <div className="technology-categories">

@@ -1,126 +1,289 @@
+/* ========================================
+   MODERN RESUME SECTION WITH GLASSMORPHISM
+   ======================================== */
+
 .resume-container {
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center the content horizontally */
-  color: #fff; /* White text color */
-  width: 80%; /* Set container width to 80% */
-  margin: 0 auto; /* Center the container horizontally */
-  padding: 0; /* Remove padding */
-  font-family: 'RobotoMono', sans-serif; /* Use the RobotoMono font */
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-primary);
+  width: 85%;
+  max-width: 1400px;
+  margin: 60px auto;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+
+  /* Initial state for scroll animation */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: 40px auto;
+  }
 
   .resume-title {
-    font-size: 2.5em; /* Large font size for the title */
-    text-align: left; /* Align the title text to the left */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    width: 100%; /* Full width for the title */
+    font-size: 3em;
+    text-align: center;
+    margin: 0 0 40px 0;
+    padding: 0;
+    width: 100%;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+
+    @media (max-width: 768px) {
+      font-size: 2.2em;
+    }
   }
 
   .content-wrapper {
-    width: 100%; /* Full width for content wrapper */
+    width: 100%;
     display: flex;
-    flex-direction: column; /* Stack items vertically by default */
+    flex-direction: column;
+    gap: 40px;
 
     @media (min-width: 1025px) {
-      flex-direction: row; /* Switch to a row layout on larger screens */
-      justify-content: center; /* Center content horizontally */
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 50px;
     }
   }
 }
 
 .left-column {
-  flex: 1; /* Allow the left column to take up equal space */
-  margin-bottom: 20px; /* Space below the left column */
+  flex: 1;
+  min-width: 0;
 
   @media (max-width: 1024px) {
-    margin-right: 0; /* Remove right margin on smaller screens */
-    width: 100%; /* Full width on smaller screens */
+    width: 100%;
+  }
+}
+
+.section-wrapper {
+  opacity: 0;
+  animation: fadeInLeft 0.6s ease-out forwards;
+
+  &.stagger-1 {
+    animation-delay: 0.1s;
+  }
+
+  &.stagger-2 {
+    animation-delay: 0.2s;
+  }
+
+  &.stagger-3 {
+    animation-delay: 0.3s;
+  }
+
+  &.stagger-4 {
+    animation-delay: 0.4s;
+  }
+
+  &.stagger-5 {
+    animation-delay: 0.5s;
+  }
+
+  &.stagger-6 {
+    animation-delay: 0.6s;
   }
 }
 
 .right-column {
-  flex: 1; /* Allow the right column to take up equal space */
+  flex: 1;
   display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  width: 100%; /* Full width for the right column */
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  animation: fadeInRight 0.8s ease-out 0.3s backwards;
+
+  .pdf-viewer {
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px var(--shadow-color);
+    transition: all 0.4s ease;
+
+    &:hover {
+      box-shadow: 0 12px 40px var(--shadow-color);
+      border-color: var(--accent-primary);
+    }
+  }
 
   iframe {
-    width: 100%; /* Full width iframe for embedding content */
-    height: 115vh; /* Set iframe height */
-    border: none; /* Remove the iframe border */
+    width: 100%;
+    height: 115vh;
+    border: none;
+    border-radius: 20px;
 
     @media (max-width: 1200px) {
-      height: 60vh; /* Reduce iframe height on smaller screens */
+      height: 70vh;
+    }
+
+    @media (max-width: 768px) {
+      height: 60vh;
     }
   }
 }
 
+/* ========================================
+   VISUAL AID STYLES
+   ======================================== */
+
 .section-container {
-  position: relative; /* Position relative for the section */
+  position: relative;
+  margin-bottom: 50px;
+
+  /* Glassmorphism */
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px var(--shadow-color);
+  transition: all 0.4s ease;
+
+  &:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 12px 40px var(--shadow-color);
+    transform: translateX(5px);
+  }
 }
 
 .section-title {
-  font-size: 2.5em; /* Large font size for section titles */
-  margin-bottom: 20px; /* Space below the section title */
-  position: relative; /* Position relative for future positioning */
+  font-size: 2.2em;
+  margin-bottom: 25px;
+  color: var(--accent-primary);
+  font-weight: 700;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+
+  /* Animated underline */
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-primary);
+    margin-top: 10px;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+
+  .section-container:hover &::after {
+    width: 100px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.8em;
+  }
 }
 
 .line-container {
-  position: relative; /* Relative positioning for the line indicator */
+  position: relative;
+  padding-left: 30px;
 
   &:before {
-    content: ""; /* Create a vertical line */
+    content: "";
     position: absolute;
     top: 0;
+    left: 10px;
     bottom: 0;
-    width: 2px; /* Set the line width */
-    background: #d3d3d3; /* Light gray color for the line */
+    width: 3px;
+    background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+    border-radius: 3px;
+    opacity: 0.6;
   }
 }
 
 .job-container {
-  margin-bottom: 20px; /* Space below each job section */
-  padding-left: 40px; /* Space on the left to align content */
-  position: relative; /* Relative positioning for the job container */
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  position: relative;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--glass-bg);
+    border-color: var(--accent-primary);
+    transform: translateX(5px);
+    box-shadow: 0 5px 20px var(--shadow-color);
+  }
 
   &:before {
-    content: ""; /* Create a horizontal line for job sections */
+    content: "";
     position: absolute;
-    top: 1em;
-    left: 0;
-    width: 20px; /* Set width of the horizontal line */
-    height: 2px; /* Set height of the line */
-    background: #d3d3d3; /* Light gray color for the line */
+    top: 25px;
+    left: -20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    border: 3px solid var(--bg-primary);
+    box-shadow: 0 0 10px var(--accent-primary);
   }
 }
 
 .job-title {
-  font-size: 1.5em; /* Font size for job titles */
-  margin: 10px 0; /* Space above and below the job title */
-  position: relative; /* Relative positioning for future positioning */
+  font-size: 1.4em;
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+  font-weight: 600;
+  position: relative;
 }
 
 .company {
-  color: #8a2be2; /* Purple color for company names */
+  color: var(--accent-primary);
+  font-weight: 700;
+  transition: color 0.3s ease;
+
+  .job-container:hover & {
+    color: var(--accent-secondary);
+  }
 }
 
 .job-dates {
-  font-size: 1em; /* Font size for job dates */
-  color: #d3d3d3; /* Light gray color for job dates */
-  margin: 5px 0 10px 0; /* Spacing around job dates */
+  font-size: 0.95em;
+  color: var(--text-secondary);
+  margin: 5px 0 15px 0;
+  font-style: italic;
 }
 
 .bullet-point {
-  list-style-type: none; /* Remove default list style */
-  position: relative; /* Relative positioning for bullet points */
-  padding-left: 20px; /* Space on the left for the bullet points */
-  font-size: 1em; /* Font size for the bullet points */
+  list-style-type: none;
+  position: relative;
+  padding-left: 25px;
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+  line-height: 1.6;
 
   &:before {
-    content: ">"; /* Arrow symbol for bullet points */
+    content: "▹";
     position: absolute;
-    left: 0; /* Align bullet point to the left */
-    color: #8a2be2; /* Purple color for bullet point arrows */
+    left: 0;
+    color: var(--accent-primary);
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  &:hover {
+    color: var(--text-primary);
   }
 }
